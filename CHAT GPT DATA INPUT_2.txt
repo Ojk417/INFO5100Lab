@@ -1,0 +1,322 @@
+//Circle.java
+package FACTORY;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author Prosper
+ * @version 1.1
+ */
+public class Circle implements Shape{
+    
+ /** 
+  * Draws the circle shape by printing a message to the console.  
+  *   
+  * This method does not take any parameters and does not return any values.  
+  *    
+  */  
+    
+    @Override
+    public void draw(){
+        System.out.println("Inside the Circle::draw() method.");
+    }
+}
+
+//Rectangle.java
+package FACTORY;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author Prosper
+ * @version 1.1
+ */
+public class Rectangle implements Shape{ 
+ /** 
+ * Draws the rectangle shape by printing a message to the console.  
+ *   
+ * This method does not take any parameters and does not return any values.  
+ *    
+ */    
+    @Override
+    public void draw(){
+        System.out.println("Inside the Rectange::draw() method.");
+    }
+    
+}
+
+//Square.java
+package FACTORY;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author Prosper
+ * @version 1.1
+ */
+public class Square implements Shape{
+    
+/** 
+  * Draws the square shape by printing a message to the console.  
+  *   
+  * This method does not take any parameters and does not return any values.  
+  *    
+  */        
+    @Override
+    public void draw(){
+        System.out.println("Inside the Square::draw() method.");
+    }
+    
+}
+
+
+//FactoryPatternDemo.java
+package FACTORY;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ * Demonstrates the use of the Factory design pattern for creating different shapes.  
+ * This class creates instances of shapes (Circle, Rectangle, and Square) using   
+ * the ShapeFactory and calls their respective draw methods. 
+ * 
+ * @author Prosper
+ * @version 1.1
+ */
+public class FactoryPatternDemo {
+ /**
+  * It creates a ShapeFactory instance and   
+  * retrieves various shape objects, invoking their draw methods to demonstrate  
+  * the Factory design pattern.  
+  * 
+  * @param args 
+  */
+    public static void main(String[] args){
+        ShapeFactory shapeFactory=new ShapeFactory();
+        
+        //get an object of Circle and call its draw method.
+        Shape shape1=shapeFactory.getShape("CIRCLE");
+        
+        //call draw method of Circle
+        shape1.draw();
+        
+        //get an object of Rectangle and call its draw method.
+        Shape shape2=shapeFactory.getShape("RECTANGLE");
+        
+        //call draw method of Rectangle
+        shape2.draw();
+        
+        //get an object of Square and call its draw method.
+        Shape shape3=shapeFactory.getShape("SQUARE");
+        
+        //call draw method of Square
+        shape3.draw();  
+        
+    }
+    
+}
+
+//ShapeFactory
+
+package FACTORY;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ * Factory class for creating shape objects. This class implements the Factory Design Pattern,  
+ * providing a method to obtain instances of various shapes based on the input type. 
+ * 
+ * @author Prosper
+ * @version 1.1
+ */
+public class ShapeFactory {
+    // Use getShape method to get object of type shape
+    public Shape getShape(String shapeType){
+        if(shapeType==null){
+            return null; // Return null if the shape is null
+        }
+        if(shapeType.equalsIgnoreCase("CIRCLE")){
+            return new Circle(); // Create and return a Circle object
+            
+        }else if(shapeType.equalsIgnoreCase("RECTANGLE")){
+            return new Rectangle(); // Create and return a Rectangle object
+            
+        }else if(shapeType.equalsIgnoreCase("SQUARE")){
+            return new Square(); // Create and return a Square object
+        }
+        return null; // Return null if no valid shape type is found
+        }
+    
+}
+
+//Shape.java
+
+package FACTORY;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
+
+/**  
+ * Interface representing a geometric shape. All shape classes should   
+ * implement this interface, providing a specific implementation of the  
+ * draw method. This promotes a consistent contract for drawing shapes   
+ * while allowing for polymorphic behavior in shape utilization.  
+ *   
+ * @author Prosper  
+ * @version 1.1  
+ */ 
+public interface Shape {
+    
+ /**  
+     * Draws the shape. The implementation should provide the actual   
+     * drawing behavior, which may include rendering the shape to a   
+     * graphical context or outputting a description of the shape being drawn.  
+     *   
+     * This method does not return any value, as it is designed to  
+     * perform the drawing action directly. 
+     */     
+    void draw();
+    
+}
+
+USING THE ABOVE JAVA CLASSES, BUILD A JUNIT TEST TO TEST PASS SUCH AS THE EXAMPLE BELOW
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
+ */
+package FACADE;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/* * Test class for the ShapeMaker class.  
+ *   
+ * This class contains unit tests for the methods of the ShapeMaker class,  
+ * validating the correct drawing of different shapes such as Circle,  
+ * Rectangle, and Square.  
+ *   
+ * @author Prosper  
+ * @version 1.0  
+ */ 
+public class ShapeMakerTest {
+    
+     /**  
+     * Default constructor for the ShapeMakerTest class.  
+     */ 
+    
+    public ShapeMakerTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
+
+    /**
+     * Test of drawCircle method, of class ShapeMaker.
+     */
+    @Test
+    public void testDrawCircle() {
+        System.out.println("drawCircle");
+        ShapeMaker instance = new ShapeMaker();
+        String expResult= "Circle::draw()";
+        String result= instance.drawCircle();
+        
+        //positive test cases
+        assertEquals(expResult,result);
+        assertEquals("Circle::draw()", instance.drawCircle());
+        
+        
+        //negative test case
+        assertNotEquals("Not Circle",instance.drawCircle());
+        assertNotEquals("Rectangle", instance.drawCircle());
+        
+       
+        // TODO review the generated test code and remove the default call to fail.
+       // fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of drawRectangle method, of class ShapeMaker.
+     */
+    @Test
+    public void testDrawRectangle() {
+        System.out.println("drawRectangle");
+        ShapeMaker instance = new ShapeMaker();
+        String expResult= "Rectangle::draw()";
+        String result=instance.drawRectangle();
+        
+        //positive test cases
+        assertEquals(expResult,result);
+        assertEquals("Rectangle::draw()", instance.drawRectangle());
+        
+        //negative test case
+         assertNotEquals("Not Rectangle",instance.drawRectangle());
+        assertNotEquals("Circle", instance.drawRectangle());
+        
+        
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of drawSquare method, of class ShapeMaker.
+     */
+    @Test
+    public void testDrawSquare() {
+        System.out.println("drawSquare");
+        ShapeMaker instance = new ShapeMaker();
+        String expResult= "Square::draw()";
+        String result=instance.drawSquare();
+        // TODO review the generated test code and remove the default call to fail.
+        
+         //positive test cases
+        assertEquals(expResult,result);
+        assertEquals("Square::draw()", instance.drawSquare());
+        
+        
+        //negative test case
+         assertNotEquals("Not Square",instance.drawSquare());
+        assertNotEquals("Circle", instance.drawSquare());
+        
+        
+       //fail("The test case is a prototype.");
+    }
+    
+}
+
